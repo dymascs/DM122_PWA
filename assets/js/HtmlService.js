@@ -1,7 +1,7 @@
 const doneCssClass = 'done';
 export default class HtmlService {
-  constructor(todoService) {
-    this.todoService = todoService;
+  constructor(carService) {
+    this.carService = carService;
     this.bindFormEvent();
     this.listTasks();
   }
@@ -10,33 +10,35 @@ export default class HtmlService {
     const form = document.querySelector("form");
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      this.addTask(form.item.value);
+      console.log("submitted! [" + form.car.value + "] [" + form.price.value + "]");
+      console.log("submitted!!");
+      this.addTask(form.car.value,form.price.value,form.year.value);
       form.reset();
-      form.item.focus();
+      form.car.focus();
     });
   }
 
-  async addTask(description) {
-    const task = { description, done: false };
-    const taskId = await this.todoService.save(task);
+  async addTask(car,price,year) {
+    const task = {car,price,year,done: false };
+    const taskId = await this.carService.save(task);
     task.id = taskId;
     this.addToHtmlList(task);
   }
 
   async listTasks() {
-    const tasks = await this.todoService.getAll();
+    const tasks = await this.carService.getAll();
     tasks.forEach((task) => this.addToHtmlList(task));
   }
 
   async deleteTask(taskId, li) {
-    await this.todoService.delete(taskId);
+    await this.carService.delete(taskId);
     li.remove();
   }
 
   async saveTask(taskId, isDone) {
-    const task = await this.todoService.get(taskId);
+    const task = await this.carService.get(taskId);
     task.done = isDone;
-    await this.todoService.save(task);
+    await this.carService.save(task);
   }
 
   toggleTask(li, taskId) {
@@ -57,7 +59,8 @@ export default class HtmlService {
       li.classList.add(doneCssClass);
     }
 
-    span.textContent = task.description;
+    span.textContent = task.car +"-> R$ "+ task.price +"-> Ano "+ task.year;
+    
 
     button.textContent = "x";
     button.addEventListener("click", (event) => {

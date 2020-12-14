@@ -9,7 +9,7 @@ const assetsToCache = [
   './assets/images/pwa-logo.png',
   './assets/js/material.min.js',
   './assets/js/HtmlService.js',
-  './assets/js/TodoService.js',
+  './assets/js/CarService.js',
   './assets/css/style.css',
   './assets/js/app.js',
   './favicon.ico',
