@@ -16,9 +16,9 @@ export default class CarService {
 
         db.on("populate", async () => {
         await db.tasks.bulkPut([
-            { car: "GOLZÃO AP 3,5kg",price:"100000",year:"1990",done:false },
-            { car: "Rilux de engenheiro",price:"100000",year:"2020",done:false },
-            { car: "chevetão",price:"7000",year:"1988" ,done:false}
+            { car: "GOL",price:"100000",year:"1990",done:false },
+            { car: "Hilux",price:"100000",year:"2020",done:false },
+            { car: "Uno",price:"7000",year:"1988" ,done:false}
 
         ]);
         });
